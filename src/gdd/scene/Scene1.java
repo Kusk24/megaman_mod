@@ -78,8 +78,8 @@ public class Scene1 extends JPanel {
 
         if (inGame) {
 
-            // g.drawLine(0, GROUND,
-            //         BOARD_WIDTH, GROUND);
+             g.drawLine(0, GROUND,
+                     BOARD_WIDTH, GROUND);
             drawPlayer(g);
             // drawShot(g);
 
