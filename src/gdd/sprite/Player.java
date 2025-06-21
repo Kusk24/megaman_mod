@@ -96,18 +96,32 @@ public class Player extends Sprite {
 
                 break;
             case ACT_RUNNING:
-                if (frame <= 10) {
-                    clipNo = 3;
-                } else if (frame <= 20) {
-                    clipNo = 2;
-                } else if (frame <= 30) {
-                    clipNo = 3;
-                } else if (frame <= 40) {
-                    clipNo = 4;
+                if(isFiring) {
+                    if (frame <= 10) {
+                        clipNo = 9;
+                    } else if (frame <= 20) {
+                        clipNo = 8;
+                    } else if (frame <= 30) {
+                        clipNo = 9;
+                    } else if (frame <= 40) {
+                        clipNo = 10;
+                    } else {
+                        clipNo = 9;
+                        frame = 0;
+                    }
                 } else {
-                    clipNo = 3;
-                    frame = 0;
-                }
+                    if (frame <= 10) {
+                        clipNo = 3;
+                    } else if (frame <= 20) {
+                        clipNo = 2;
+                    } else if (frame <= 30) {
+                        clipNo = 3;
+                    } else if (frame <= 40) {
+                        clipNo = 4;
+                    } else {
+                        clipNo = 3;
+                        frame = 0;
+                }}
                 break;
             case ACT_JUMPING:
                 if (isFiring) {
@@ -146,7 +160,7 @@ public class Player extends Sprite {
         if (y < GROUND && action == ACT_STANDING) {
             y = GROUND;
         }
-        
+
         if (action == ACT_STANDING && dx != 0 && y == GROUND){
             action = ACT_RUNNING;
             frame = 0;
@@ -181,9 +195,10 @@ public class Player extends Sprite {
                 frame = 0;
             }
         } else if (key == KeyEvent.VK_ENTER) {
-            if (action != ACT_SHOOT) {
+            if (action != ACT_JUMPING & action != ACT_RUNNING) {
                 action = ACT_SHOOT;
                 frame = 0;
+            } else {
                 isFiring = true;
             }
         }
@@ -231,8 +246,8 @@ public class Player extends Sprite {
                 clipNo = 0;
                 frame = 0;
                 action = ACT_STANDING;
-                isFiring = false;
             }
+            isFiring = false;
             dx = 0;
         }
     }
