@@ -54,7 +54,7 @@ public class Scene1 extends JPanel {
                 g.drawImage(player.getImage(), player.getX()+player.getWidth(), player.getY()-player.getHeight(), -player.getWidth(), player.getHeight(), this);
             }
             // g.drawImage(player.getImage(), player.getX(), player.getY()-player.getHeight(), this);
-            g.drawRect(player.getX(),player.getY(),10,10);            
+            g.drawRect(player.getX()+35,player.getY(),10,10);
             g.drawRect(player.getX(),player.getY()-player.getHeight(),player.getWidth(),player.getHeight());            
             g.drawString("Frame# "+player.getFrame(), 10,10);
         }

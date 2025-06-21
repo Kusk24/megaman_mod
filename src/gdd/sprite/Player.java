@@ -108,7 +108,6 @@ public class Player extends Sprite {
                     clipNo = 3;
                     frame = 0;
                 }
-
                 break;
             case ACT_JUMPING:
                 if (isFiring) {
@@ -156,16 +155,16 @@ public class Player extends Sprite {
             if (action != ACT_RUNNING) {
                 // Change of action
                 frame = 0;
+                action = ACT_RUNNING;
             }
-            action = ACT_RUNNING;
             facing = DIR_LEFT;
             dx = -2;
         } else if (key == KeyEvent.VK_RIGHT) {
             if (action != ACT_RUNNING) {
                 // Change of action
                 frame = 0;
+                action = ACT_RUNNING;
             }
-            action = ACT_RUNNING;
             facing = DIR_RIGHT;
             dx = 2;
         } else if (key == KeyEvent.VK_SPACE) {
@@ -179,6 +178,7 @@ public class Player extends Sprite {
             if (action != ACT_SHOOT) {
                 action = ACT_SHOOT;
                 frame = 0;
+                isFiring = true;
             }
         }
     }
@@ -191,8 +191,8 @@ public class Player extends Sprite {
                 // Change of action
                 clipNo = 0;
                 frame = 0;
+                action = ACT_STANDING;
             }
-            action = ACT_STANDING;
             facing = DIR_LEFT;
             dx = 0;
         }
@@ -202,8 +202,8 @@ public class Player extends Sprite {
                 // Change of action
                 clipNo = 0;
                 frame = 0;
+                action = ACT_STANDING;
             }
-            action = ACT_STANDING;
             facing = DIR_RIGHT;
             dx = 0;
         }
@@ -213,8 +213,8 @@ public class Player extends Sprite {
                 // Change of action
                 clipNo = 0;
                 frame = 0;
+                action = ACT_STANDING;
             }
-            action = ACT_STANDING;
             facing = DIR_RIGHT;
             dx = 0;
         }
@@ -224,8 +224,9 @@ public class Player extends Sprite {
                 // Change of action
                 clipNo = 0;
                 frame = 0;
+                action = ACT_STANDING;
+                isFiring = false;
             }
-            action = ACT_STANDING;
             dx = 0;
         }
     }
