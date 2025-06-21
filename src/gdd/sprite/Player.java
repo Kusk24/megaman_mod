@@ -146,13 +146,19 @@ public class Player extends Sprite {
         if (y < GROUND && action == ACT_STANDING) {
             y = GROUND;
         }
+        
+        if (action == ACT_STANDING && dx != 0 && y == GROUND){
+            action = ACT_RUNNING;
+            frame = 0;
+            clipNo = 3;
+        }
     }
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            if (action != ACT_RUNNING) {
+            if(action != ACT_RUNNING && action != ACT_JUMPING) {
                 // Change of action
                 frame = 0;
                 action = ACT_RUNNING;
@@ -160,7 +166,7 @@ public class Player extends Sprite {
             facing = DIR_LEFT;
             dx = -2;
         } else if (key == KeyEvent.VK_RIGHT) {
-            if (action != ACT_RUNNING) {
+            if (action != ACT_RUNNING && action != ACT_JUMPING) {
                 // Change of action
                 frame = 0;
                 action = ACT_RUNNING;
