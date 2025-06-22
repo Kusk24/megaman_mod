@@ -79,7 +79,7 @@ public class Player extends Sprite {
     }
 
     public void act() {
-//        System.out.printf("Player action=%d frame=%d facing=%d\n", action, frame, facing);
+        System.out.printf("Player action=%d frame=%d facing=%d\n", action, frame, facing);
 
         frame++;
 
@@ -93,7 +93,6 @@ public class Player extends Sprite {
                     frame = 0;
                     clipNo = 1; // blink
                 }
-
                 break;
             case ACT_RUNNING:
                 if(isFiring) {
@@ -143,7 +142,9 @@ public class Player extends Sprite {
                 }
                 break;
             case ACT_SHOOT:
-                clipNo = 7;
+                if (frame <= 5) {
+                    clipNo = 7;
+                }
                 break;
         }
 
@@ -155,10 +156,6 @@ public class Player extends Sprite {
 
         if (x >= BOARD_WIDTH - 2 * width) {
             x = BOARD_WIDTH - 2 * width;
-        }
-
-        if (y < GROUND && action == ACT_STANDING) {
-            y = GROUND;
         }
 
         if (action == ACT_STANDING && dx != 0 && y == GROUND){
@@ -198,9 +195,8 @@ public class Player extends Sprite {
             if (action != ACT_JUMPING & action != ACT_RUNNING) {
                 action = ACT_SHOOT;
                 frame = 0;
-            } else {
-                isFiring = true;
             }
+            isFiring = true;
         }
     }
 
@@ -208,7 +204,7 @@ public class Player extends Sprite {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            if (action != ACT_STANDING) {
+            if (action != ACT_STANDING && action != ACT_JUMPING) {
                 // Change of action
                 clipNo = 0;
                 frame = 0;
@@ -219,7 +215,7 @@ public class Player extends Sprite {
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            if (action != ACT_STANDING) {
+            if (action != ACT_STANDING && action != ACT_JUMPING) {
                 // Change of action
                 clipNo = 0;
                 frame = 0;
@@ -241,7 +237,7 @@ public class Player extends Sprite {
         }
 
         if (key == KeyEvent.VK_ENTER) {
-            if (action != ACT_STANDING) {
+            if (action == ACT_SHOOT) {
                 // Change of action
                 clipNo = 0;
                 frame = 0;
